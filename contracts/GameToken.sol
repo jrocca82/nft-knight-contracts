@@ -5,7 +5,7 @@ pragma abicoder v2;
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract Token is IERC20, ERC20, Ownable {
+contract GameToken is ERC20 {
     uint8 private immutable _decimals;
 
     constructor(
@@ -16,15 +16,7 @@ contract Token is IERC20, ERC20, Ownable {
         _decimals = decimals_;
     }
 
-    function mint(address account, uint256 amount) external onlyOwner {
+    function mint(address account, uint256 amount) external {
         _mint(account, amount);
-    }
-
-    function burn(address account, uint256 amount) external onlyOwner {
-        _burn(account, amount);
-    }
-
-    function decimals() public view override returns (uint8) {
-        return _decimals;
     }
 }

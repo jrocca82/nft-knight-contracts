@@ -34,6 +34,9 @@ export default {
   networks: {
     hardhat: {
       chainId: 1337,
+      forking: {
+        url: `https://eth-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_KEY}`,
+      },
       accounts: [
         {
           privateKey: process.env.PRIVATE_KEY,
@@ -56,6 +59,10 @@ export default {
     },
     mainnet: {
       url: process.env.MAINNET_URL || defaultRpcUrl,
+      accounts: [process.env.PRIVATE_KEY || defaultKey]
+    },
+    goerli: {
+      url: process.env.GOERLI_URL || defaultRpcUrl,
       accounts: [process.env.PRIVATE_KEY || defaultKey]
     }
   },

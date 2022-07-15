@@ -6,15 +6,29 @@ import { getLedgerSigner } from "../utils";
 task("read-balance")
   .addParam("address")
   .setAction(async (args, hre) => {
-    const contractAddress = contracts[hre.network.name].token;
+    const contractAddress = contracts[hre.network.name].gameToken;
     console.log(`network is ${hre.network.name}`);
     console.log(`token address is ${contractAddress}`);
-    const token = (await hre.ethers.getContractFactory("Token")).attach(
+    const token = (await hre.ethers.getContractFactory("GameToken")).attach(
       contractAddress
     );
     const balance = await token.balanceOf(args.address);
     console.log(
       `balance is ${balance.toString()} wei for address ${args.address}`
+    );
+  });
+
+  task("total-supply")
+  .setAction(async (_, hre) => {
+    const contractAddress = contracts[hre.network.name].gameToken;
+    console.log(`network is ${hre.network.name}`);
+    console.log(`token address is ${contractAddress}`);
+    const token = (await hre.ethers.getContractFactory("GameToken")).attach(
+      contractAddress
+    );
+    const totalSuppy = await token.totalSupply();
+    console.log(
+      `Total supply is ${hre.ethers.utils.formatEther(totalSuppy)}`
     );
   });
 
@@ -29,10 +43,10 @@ task("mint")
     } else {
       signer = getLedgerSigner(args.ledgersigner, hre.ethers.provider);
     }
-    const contractAddress = contracts[hre.network.name].token;
+    const contractAddress = contracts[hre.network.name].gameToken;
     console.log(`network is ${hre.network.name}`);
     console.log(`token address is ${contractAddress}`);
-    const token = (await hre.ethers.getContractFactory("Token"))
+    const token = (await hre.ethers.getContractFactory("GameToken"))
       .attach(contractAddress)
       .connect(signer);
     const decimals = await token.decimals();

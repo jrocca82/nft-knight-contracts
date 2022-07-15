@@ -1,4 +1,11 @@
 {
-  "kovan": { },
-  "localhost": { } 
+  "kovan": {},
+  "localhost": {
+    "gameToken": "0x3C3066f709b1213De1279066673C6B8d0de7b28E"
+  },
+  "goerli": {
+    "gameToken": "0x393276f1E3192E07CFD74E08E086a554A3E4f437",
+    "gameItems": "0xCe53Ee23e068945f1Ff48E13282e88bf84e18CeF",
+    "marketplace": "0xF50f6F3FEaE075066e3eb6bAfd601690aC32a244"
+  }
 }

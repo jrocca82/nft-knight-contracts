@@ -1,7 +1,7 @@
 import { deployContract } from "../utils";
-import { Token } from "../../../build/typechain";
+import { GameToken } from "../../../build/typechain";
 
-export const contractNames = () => ["token"];
+export const contractNames = () => ["gameToken"];
 
 export const constructorArguments = () => [
   process.env.CONSTRUCTOR_TOKEN_NAME,
@@ -11,13 +11,13 @@ export const constructorArguments = () => [
 
 export const deploy = async (deployer, setAddresses) => {
   console.log("deploying Token");
-  const token: Token = (await deployContract(
-    "Token",
+  const token: GameToken = (await deployContract(
+    "GameToken",
     constructorArguments(),
     deployer,
     1
-  )) as Token;
+  )) as GameToken;
   console.log(`deployed Token to address ${token.address}`);
-  setAddresses({ token: token.address });
+  setAddresses({ gameToken: token.address });
   return token;
 };
